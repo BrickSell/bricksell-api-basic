@@ -164,9 +164,7 @@ export class UsersService {
     await this.userRoleRepository.updateById(userRoles.id, {
       roleStatus: RoleStatus.DELETED,
       deletedAt: new Date().toISOString(),
-      deletedBy: this.userId,
       updatedAt: new Date().toISOString(),
-      updatedBy: this.userId,
     });
 
     return this.getUserByCognitoId([USERRELATIONS.USER_ROLES]);
@@ -186,7 +184,6 @@ export class UsersService {
     await this.userRoleRepository.updateById(userRoles.id, {
       roleStatus,
       updatedAt: new Date().toISOString(),
-      updatedBy: this.userId,
     });
 
     return this.getUserByCognitoId([USERRELATIONS.USER_ROLES]);
@@ -205,9 +202,7 @@ export class UsersService {
     if (hasDeletedRole) throw new HttpErrors[423]('Deleted role');
 
     if (!hasRole) {
-      await this.usersRepository
-        .userRoles(userId)
-        .create({roleId, userId, createdBy: userId, updatedBy: userId});
+      await this.usersRepository.userRoles(userId).create({roleId, userId});
     }
   }
 }

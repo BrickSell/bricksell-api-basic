@@ -66,26 +66,6 @@ export class UserRole extends Entity {
   })
   deletedAt?: string;
 
-  @property({
-    type: 'string',
-    length: 37,
-    required: true,
-  })
-  createdBy: string;
-
-  @property({
-    type: 'string',
-    length: 37,
-    required: true,
-  })
-  updatedBy: string;
-
-  @property({
-    type: 'string',
-    length: 37,
-  })
-  deletedBy?: string;
-
   // Define well-known properties here
 
   // Indexer property to allow additional data
